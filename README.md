@@ -1,127 +1,65 @@
 # 💧 Predicting Molecular Solubility (LogS) using Machine Learning
 
-This is my **first machine learning project**, built in Google Colab using Python. The objective is to **predict the solubility (LogS) of chemical compounds** based on molecular descriptors using machine learning techniques like **Linear Regression** and **Random Forest**.
+This project aims to predict the solubility (LogS) of chemical compounds using molecular descriptors. It is my first machine learning project built using Python in Google Colab.
 
 ---
 
-## 📁 Dataset
+## 📊 Dataset
 
-We use a publicly available dataset from [Data Professor](https://github.com/dataprofessor/data):
-
-- Dataset: [`delaney_solubility_with_descriptors.csv`](https://github.com/dataprofessor/data/blob/master/delaney_solubility_with_descriptors.csv)
-- Target variable: `logS` (Log of solubility)
-- Features: Molecular descriptors such as `MolLogP`, `MolWt`, `NumRotatableBonds`, etc.
+- Source: [Data Professor GitHub](https://github.com/dataprofessor/data)
+- File: `delaney_solubility_with_descriptors.csv`
+- Target: `logS` (Log of solubility)
+- Features: Molecular descriptors (e.g., MolWt, MolLogP, NumRotatableBonds, etc.)
 
 ---
 
-## 🚀 Project Workflow
+## 🧪 Project Steps
 
-### 1. **Load the Data**
+1. **Load the dataset** from a public URL.
+2. **Prepare the data** by separating features (X) and the target variable (y).
+3. **Split the data** into training and testing sets.
+4. **Train models** using:
+   - Linear Regression
+   - Random Forest Regressor
+5. **Evaluate models** using Mean Squared Error (MSE) and R-squared (R²).
+6. **Compare performance** of both models.
+7. **Visualize predictions** to assess accuracy.
 
-```python
-import pandas as pd
+---
 
-df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/refs/heads/master/delaney_solubility_with_descriptors.csv')
-2. Data Preparation
-Separate input features X and target variable y
+## 📈 Results Overview
 
-Split dataset into training and testing sets (80/20 split)
+| Model            | Train MSE | Train R² | Test MSE | Test R² |
+|------------------|-----------|----------|----------|---------|
+| Linear Regression|    ...    |   ...    |   ...    |   ...   |
+| Random Forest    |    ...    |   ...    |   ...    |   ...   |
 
-python
-Copy
-Edit
-from sklearn.model_selection import train_test_split
+> Replace `...` with actual results from the notebook.
 
-X = df.drop('logS', axis=1)
-y = df['logS']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=100)
-3. Model Building
-🔹 Linear Regression
-python
-Copy
-Edit
-from sklearn.linear_model import LinearRegression
+---
 
-lr = LinearRegression()
-lr.fit(X_train, y_train)
-🔹 Random Forest Regressor
-python
-Copy
-Edit
-from sklearn.ensemble import RandomForestRegressor
+## 🔧 Tools & Libraries
 
-rf = RandomForestRegressor(max_depth=2, random_state=100)
-rf.fit(X_train, y_train)
-4. Model Evaluation
-Using metrics:
+- Python
+- Pandas
+- Scikit-learn
+- NumPy
+- Matplotlib
+- Google Colab
 
-Mean Squared Error (MSE)
+---
 
-R-squared Score (R²)
+## 🚀 Future Improvements
 
-python
-Copy
-Edit
-from sklearn.metrics import mean_squared_error, r2_score
+- Add more models (e.g., XGBoost)
+- Hyperparameter tuning
+- Save trained models
+- Use feature selection or dimensionality reduction
 
-5. Model Comparison
-python
-Copy
-Edit
-df_models = pd.concat([lr_results, rf_results], axis=0).reset_index(drop=True)
-This gives a quick overview of which model performs better on both training and test sets.
+---
 
-6. Prediction Visualization
-We visualize how well the Linear Regression model predicts LogS:
+## 🙌 Acknowledgments
 
-python
-Copy
-Edit
-import matplotlib.pyplot as plt
-import numpy as np
+- Dataset by [Data Professor](https://github.com/dataprofessor/)
+- Project inspired by basic ML workflows in chemistry
 
-plt.scatter(x=y_train, y=y_lr_train_pred, c='#7CAE00', alpha=0.3)
-z = np.polyfit(y_train, y_lr_train_pred, 1)
-p = np.poly1d(z)
-plt.plot(y_train, p(y_train), '#F8766D')
-plt.xlabel("Experimental LogS")
-plt.ylabel("Predicted LogS")
-plt.title("Linear Regression: Experimental vs Predicted")
-plt.show()
-📌 Technologies Used
-Python
-
-Pandas
-
-Scikit-learn
-
-Matplotlib / NumPy
-
-Google Colab
-
-📈 Future Improvements
-Hyperparameter tuning (e.g., GridSearchCV)
-
-Add more models (e.g., XGBoost, SVR)
-
-Feature selection or dimensionality reduction (PCA)
-
-Save and load models (joblib/pickle)
-
-📂 How to Run
-Open Google Colab
-
-Upload or link the first-project.ipynb
-
-Run cells in sequence
-
-Observe model results and plots
-
-🙌 Acknowledgments
-Dataset from Data Professor
-
-Inspired by introductory ML tutorials in chemistry
-
-yaml
-Copy
-Edit
